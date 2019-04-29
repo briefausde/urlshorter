@@ -14,8 +14,8 @@
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <button type="submit" class="btn btn-primary">Sign up</button>
-                                <a href="{% url 'login' %}">I already have account</a>
-                                <a href="{% url 'main' %}">Cancel</a>
+                                <a href="{% url 'login' %}" class="btn btn-primary">I already have account</a>
+                                <a href="{% url 'main' %}" class="btn btn-primary">Cancel</a>
                                 <input type="hidden" name="next" value="{{ next }}"/>
                             </form>
                         {% endif %}

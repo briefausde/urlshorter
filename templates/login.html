@@ -9,8 +9,8 @@
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-primary">Sign in</button>
-                        <a href="{% url 'register' %}">Register new account</a>
-                        <a href="{% url 'main' %}">Cancel</a>
+                        <a href="{% url 'register' %}" class="btn btn-primary">Register new account</a>
+                        <a href="{% url 'main' %}" class="btn btn-primary">Cancel</a>
                         <input type="hidden" name="next" value="{{ next }}"/>
                     </form>
                 </div>
