@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="wrapper">
+        <div class="container-fluid" style="padding: 35px;">
+            <div class="container">
+                <div class="row">
+                    <div class="form-group">
+                        {% if user.is_authenticated %}
+                            <p>Your account doesn't have access to this page. To proceed,
+                                please login with an account that has access.</p>
+                        {% else %}
+                            <form method="post" action="{% url 'register' %}" class="auth-form">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn btn-primary">Sign up</button>
+                                <a href="{% url 'login' %}">I already have account</a>
+                                <a href="{% url 'main' %}">Cancel</a>
+                                <input type="hidden" name="next" value="{{ next }}"/>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

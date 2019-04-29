@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="wrapper">
+        <p class="menu">
+            <a class="btn btn-primary" href="{% url 'main' %}">Main</a>
+            <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+        </p>
+        <div class="container-fluid" style="padding: 35px;">
+            <h3>Your links</h3>
+            <div class="card" style="width: 100%">
+                <ul class="list-group list-group-flush">
+                    {% for url in urls %}
+                        <li class="list-group-item">
+                            <a href="{{ url.original_url }}">{{ url.original_url }}</a> shortened to <a
+                                href="/{{ url.short_url }}">{{ url.short_url }}</a>
+                            <p style="float: right"><a href="{% url 'user_link_detail' url=url.short_url %}">More</a>
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

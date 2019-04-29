@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="wrapper">
+        <div class="container-fluid" style="padding: 35px;">
+            You logged out!
+
+            <br><br><a href="{% url 'login' %}">Login</a>
+            <br><a href="{% url 'main' %}">Go to main</a>
+        </div>
+    </div>
+{% endblock %}
