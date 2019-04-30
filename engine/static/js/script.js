@@ -23,7 +23,6 @@ $(document).ready(function () {
     });
 
     if (document.getElementById("click_statistics")) {
-        console.log(1);
         var data = tokens.graph_data;
         var labels_data = [];
         var clicks_data = [];
