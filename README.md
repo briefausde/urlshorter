@@ -1,3 +1,22 @@
-# urlshorter
+# Links shorter
+Web service to shorten links with statistics of clicks in the last 30 days.
 
-![alt text](https://lh4.googleusercontent.com/v0YDn0NvUK-HOwEpi8gPh8RjNgsa6hLRf9a698eadiTsy8AtD332k0Qq7iWizkqgvm2-OHi6og=w607)
+## How to start
+If you use project locally, rename settings_local.py to settings.py
+
+Further install requirements and make migrations
+
+```python
+pip install -r requirements.txt
+```
+
+```python
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Ready! You can run the server
+
+```python
+python manage.py runserver
+```
