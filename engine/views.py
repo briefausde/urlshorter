@@ -3,6 +3,8 @@ import uuid
 from datetime import timedelta
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
+from django.core.validators import URLValidator
 from django.http import HttpResponseBadRequest, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import *
@@ -32,16 +34,21 @@ class ShortUrlView(View):
 
     def post(self, *args, **kwargs):
         link = self.request.POST.get('link', '')
-        if link:
-            short_url = self.generate_link()
 
-            if self.request.user.is_authenticated:
-                self.model.objects.create(user=self.request.user, original_url=link, short_url=short_url)
-            else:
-                self.model.objects.create(original_url=link, short_url=short_url)
+        validate = URLValidator()
+        try:
+            validate(link)
+        except ValidationError:
+            return HttpResponseBadRequest()
 
-            return HttpResponse('http://{}/{}'.format(self.request.get_host(), short_url))
-        return HttpResponseBadRequest()
+        short_url = self.generate_link()
+
+        if self.request.user.is_authenticated:
+            self.model.objects.create(user=self.request.user, original_url=link, short_url=short_url)
+        else:
+            self.model.objects.create(original_url=link, short_url=short_url)
+
+        return HttpResponse('https://{}/{}'.format(self.request.get_host(), short_url))
 
 
 class RedirectUrlView(RedirectView):

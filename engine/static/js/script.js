@@ -13,7 +13,12 @@ $(document).ready(function () {
             },
             success: function (data) {
                 window.prompt("Copy to clipboard: Ctrl+C, Enter", data);
-            }
+            },
+            statusCode: {
+                400: function() {
+                  alert( "Please, input correct url (ex: https://google.com)" );
+                }
+            },
         });
     });
 
